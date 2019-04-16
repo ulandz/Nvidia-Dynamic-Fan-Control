@@ -219,7 +219,7 @@ class NvidiaFanController(StoppableThread):
 if __name__ == "__main__":
 	print "Please launch nvidia-gui.py"
 	"""
-	curve_point_array = [[10, 30],[20, 35],[40, 45],[50, 55],[60, 60],[66, 70],[70, 99],[100, 100]]
+	curve_point_array = [[10, 30],[20, 40],[25, 50],[30, 60],[35, 70],[40, 80],[50, 90],[60, 100]]
 
 	x_temp = list()
 	for index in range(0, len(curve_point_array)):
