@@ -188,11 +188,11 @@ class NvidiaFanController(StoppableThread):
 		drv_ver = self.getDriverVersion()
 
 		if drv_ver >= NvidiaFanController.DRIVER_VERSION_CHANGE:
-			process = Popen("nvidia-settings -a [gpu:0]/GPUFanControlState=1 -a [fan:0]/GPUTargetFanSpeed={0}".format(speed), shell=True, stdin=PIPE, stdout=PIPE)
+			process = Popen("nvidia-settings -a [gpu:0]/GPUFanControlState=1 -a [fan:0]/GPUTargetFanSpeed={0} -a [gpu:1]/GPUFanControlState=1 -a [fan:1]/GPUTargetFanSpeed={0} -a [gpu:2]/GPUFanControlState=1 -a [fan:2]/GPUTargetFanSpeed={0} -a [gpu:3]/GPUFanControlState=1 -a [fan:3]/GPUTargetFanSpeed={0}".format(speed), shell=True, stdin=PIPE, stdout=PIPE)
 		elif drv_ver in NvidiaFanController.DRIVER_VERSIONS_ERROR:
 			print "Cannot control fan speed in version {0} of the driver".format(drv_ver)
 		else:
-			process = Popen("nvidia-settings -a [gpu:0]/GPUFanControlState=1 -a [fan:0]/GPUCurrentFanSpeed={0}".format(speed), shell=True, stdin=PIPE, stdout=PIPE)
+			process = Popen("nvidia-settings -a [gpu:0]/GPUFanControlState=1 -a [fan:0]/GPUCurrentFanSpeed={0} nvidia-settings -a [gpu:1]/GPUFanControlState=1 -a [fan:1]/GPUCurrentFanSpeed={0} nvidia-settings -a [gpu:2]/GPUFanControlState=1 -a [fan:2]/GPUCurrentFanSpeed={0} nvidia-settings -a [gpu:3]/GPUFanControlState=1 -a [fan:3]/GPUCurrentFanSpeed={0}".format(speed), shell=True, stdin=PIPE, stdout=PIPE)
 
 	def getDriverVersion(self):
 		try:
